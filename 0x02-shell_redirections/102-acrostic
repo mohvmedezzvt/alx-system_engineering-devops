@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -c1 | paste -s | tr-d "[:blank:]"
+sed -e ':a' -e 'N' -e '$!ba' -e 's/\n//g;s/\b\(.\)//g'
