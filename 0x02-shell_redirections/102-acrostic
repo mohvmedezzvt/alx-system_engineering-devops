@@ -1,2 +1,2 @@
 #!/bin/bash
-sed -e ':a' -e 'N' -e '$!ba' -e 's/\n//g;s/\b\(.\)//g'
+cut -c1 | tr -d "[:space:]" | paste -s
