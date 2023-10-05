@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Use ifconfig to get a list of network interfaces and their IPv4 addresses
+
+ip_list=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | awk '{print $2}')
+
+# Loop through the IP addresses and display them
+for ip in $ip_list; do
+    echo "$ip"
+done
