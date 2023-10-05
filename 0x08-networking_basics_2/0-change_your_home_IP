@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Define the desired IP address mappings
+LOCALHOST_IP="127.0.0.2"
+FACEBOOK_IP="8.8.8.8"
+
+# Edit the /etc/hosts file
+echo "$LOCALHOST_IP localhost" > /etc/hosts
+echo "$FACEBOOK_IP facebook.com" >> /etc/hosts
