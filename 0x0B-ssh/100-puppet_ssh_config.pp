@@ -1,4 +1,5 @@
 # Puppet manifest to configure SSH client
+include stdlib
 
 file { 'No password authentication':
     ensure  => present,
