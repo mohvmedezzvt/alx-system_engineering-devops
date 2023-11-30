@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 # Configure your Nginx server so that /redirect_me is redirecting to another page
-sudo apt-get -y update
-sudo apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-#!/bin/bash
 
+# Update package information
 sudo apt-get -y update
+
+# Install Nginx
 sudo apt-get -y install nginx
+
+# Allow incoming traffic on port 80 for Nginx
 sudo ufw allow 'Nginx HTTP'
-echo "Holberton School" | sudo tee /var/www/html/index
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Create a simple "Hello World!" page
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+
+# Add a rewrite rule for /redirect_me in the Nginx default configuration
+sudo sed -i '/listen 80 default_server;/a \ \ \ \ location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
 sudo service nginx restart
