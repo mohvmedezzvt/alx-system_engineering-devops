@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# lists files in the current directory, displaying only the part after the first dash
+ls_list=$(ls)
+for file in $ls_list; do
+    name_after_dash=$(echo "$file" | cut -d'-' -f2-)
+    echo "$name_after_dash"
+done
