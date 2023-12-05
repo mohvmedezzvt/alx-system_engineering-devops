@@ -23,9 +23,6 @@ sudo sed -i '/^[^#]*server_name.*;$/a \ \n\tlocation \/redirect_me {\n\t\treturn
 # Append a custom error page and location block after the server_name configuration
 sudo sed -i '/^[^#]*server_name.*;$/a \ \n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\tinternal;\n\t\troot /var/www/mohamedezzat.tech/html;\n\t}' /etc/nginx/sites-available/default
 
-# Append a custom error page and location block after the server_name configuration in the default file
-sudo sed -i '/^[^#]*server_name.*;$/a \ \n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\tinternal;\n\t\troot /var/www/mohamedezzat.tech/html;\n\t}' /etc/nginx/sites-available/default
-
 # Append a custom header after the "server {" block in the default file
 sudo sed -i "/^server {/a \ \tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
 
