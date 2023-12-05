@@ -17,6 +17,9 @@ sudo mkdir -p /var/www/mohamedezzat.tech/html
 # Create a custom 404 error page
 sudo echo "Ceci n'est pas une page" | sudo tee /var/www/mohamedezzat.tech/html/custom_404.html > /dev/null 2>&1
 
+# Remove existing occurrences of the location block for "/custom_404.html"
+sudo sed -i '/location \/custom_404.html {/,/}/d' /etc/nginx/sites-available/default
+
 # Append a location block for a redirection to LinkedIn after the server_name configuration
 sudo sed -i '/^[^#]*server_name.*;$/a \ \n\tlocation \/redirect_me {\n\t\treturn 301 https://www.linkedin.com/in/mohvmedezzvt01;\n\t}' /etc/nginx/sites-available/default
 
