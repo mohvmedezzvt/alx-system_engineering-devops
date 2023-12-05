@@ -5,9 +5,16 @@
 sudo apt-get update
 sudo apt-get install -y nginx
 
-# sed to add the line inside the server block
-nginx_config_line="add_header X-Served-By \$hostname;"
-sudo sed -i "/^\s*server\s*{/,/^\s*}\s*$/ s|^\s*|\t$nginx_config_line\n|" /etc/nginx/nginx.conf
+# Allow Nginx HTTP traffic through the firewall
+sudo ufw allow 'Nginx HTTP'
 
-# Restart the Nginx service to apply the changes
+# Create a basic index.html file and a custom 404.html page
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
+sudo sh -c 'echo "Ceci n'\''est pas une page" > /var/www/html/404.html'
+
+# add the custom header line inside the server block in the Nginx configuration
+sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+
+# Check the Nginx configuration syntax & Restart the Nginx service to apply the changes
+sudo nginx -t
 sudo service nginx restart
