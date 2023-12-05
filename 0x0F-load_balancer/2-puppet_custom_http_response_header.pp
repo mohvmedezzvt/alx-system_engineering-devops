@@ -1,19 +1,5 @@
 # automate the task of creating a custom HTTP header response
-exec { 'update' :
-  command  => 'sudo apt-get -y update',
-  provider => shell,
-}
-
-package { 'nginx' :
-  ensure => installed,
-}
-
-exec { 'add header' :
-  command  => 'sudo sed -i "/listen 80 default_server;/a add header X-Server-By $HOSTNAME;" /etc/nginx/sites-available/default;',
-  provider => shell,
-}
-
-exec { 'nginx restart' :
-  command  => 'sudo service nginx restart',
+exec { 'configure-nginx':
+  command  => 'apt-get -y update && apt-get -y install nginx && sed -i "/listen 80 default_server;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default && service nginx restart',
   provider => shell,
 }
