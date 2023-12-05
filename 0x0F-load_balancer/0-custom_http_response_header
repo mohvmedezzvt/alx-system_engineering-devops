@@ -5,29 +5,9 @@
 sudo apt-get update
 sudo apt-get install -y nginx
 
-# Allow Nginx through the firewall
-sudo ufw allow 'Nginx HTTP'
-
-# Create a default HTML file with "Hello World!"
-sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html' > /dev/null 2>&1
-
-# Create a directory for the main website
-sudo mkdir -p /var/www/mohamedezzat.tech/html
-
-# Create a custom 404 error page
-sudo echo "Ceci n'est pas une page" | sudo tee /var/www/mohamedezzat.tech/html/custom_404.html > /dev/null 2>&1
-
-# Remove existing occurrences of the location block for "/custom_404.html"
-sudo sed -i '/location \/custom_404.html {/,/}/d' /etc/nginx/sites-available/default
-
-# Append a location block for a redirection to LinkedIn after the server_name configuration
-sudo sed -i '/^[^#]*server_name.*;$/a \ \n\tlocation \/redirect_me {\n\t\treturn 301 https://www.linkedin.com/in/mohvmedezzvt01;\n\t}' /etc/nginx/sites-available/default
-
-# Append a custom error page and location block after the server_name configuration
-sudo sed -i '/^[^#]*server_name.*;$/a \ \n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\tinternal;\n\t\troot /var/www/mohamedezzat.tech/html;\n\t}' /etc/nginx/sites-available/default
-
-# Append a custom header after the "server {" block in the default file
-sudo sed -i "/^server {/a \ \tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+# sed to add the line inside the server block
+nginx_config_line="add_header X-Served-By \$hostname;"
+sudo sed -i "/^\s*server\s*{/,/^\s*}\s*$/ s|^\s*|\t$nginx_config_line\n|" /etc/nginx/nginx.conf
 
 # Restart the Nginx service to apply the changes
 sudo service nginx restart
