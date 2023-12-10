@@ -8,10 +8,10 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 
 # Allow incoming traffic on port 80 for Nginx
-sudo ufw allow 'Nginx HTTP'
+# sudo ufw allow 'Nginx HTTP'
 
 # Create a simple "Hello World!" page
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+echo 'Hello World!' > /var/www/html/index.html
 
 # Add a rewrite rule for /redirect_me in the Nginx default configuration
 sudo sed -i '/listen 80 default_server;/a \ \ \ \ location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }' /etc/nginx/sites-available/default
