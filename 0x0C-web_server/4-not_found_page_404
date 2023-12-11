@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
-# redirect to 404 page
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-sudo chmod 666 /var/www/html/index.nginx-debian.html
-sudo echo -e "Ceci n'est pas une page\n" | sudo tee /var/www/devbn3li.tech/html/custom_404.html > /dev/null
-sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/luischaparroc permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
+
+# Update package list & Installing Nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+
+# Create a custom 404 HTML page
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+
+# Configure Nginx:
+# - Add a rewrite rule for redirecting /redirect_me to a LinkedIn profile
+# - Set up a custom 404 error page pointing to the created HTML file
+sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/www.linkedin.com\/in\/mohamed-ezzat01 permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
+
+# Starting the Nginx service
 sudo service nginx start
