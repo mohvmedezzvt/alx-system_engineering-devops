@@ -7,7 +7,7 @@ sudo apt-get install nginx -y
 
 # Allowing write permissions to the HTML file & Add content to the HTML file
 sudo chmod 666 /var/www/html/index.html
-sudo echo "Hello World!" | sudo tee /var/www/html/index.html > /div/null
+sudo echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 sudo mkdir -p /var/www/mohamedezzat.tech/html
 
 # Create a custom 404 HTML page
