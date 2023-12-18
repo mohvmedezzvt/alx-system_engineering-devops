@@ -20,5 +20,5 @@ sudo sed -i '/^[^#]*server_name.*;$/a \ \n\tlocation \/redirect_me {\n\t\treturn
 sudo sed -i '/^[^#]*server_name.*;$/a \ \n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\tinternal;\n\t\troot /var/www/mohamedezzat.tech/html;\n\t}' /etc/nginx/sites-available/default
 
 # Starting the Nginx service
-sudo service nginx start
+sudo service nginx restart
 sudo nginx -s reload
