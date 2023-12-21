@@ -9,9 +9,3 @@ sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/si
 
 # Restart nginx
 service nginx restart
-
-# Check if Nginx is running as the nginx user
-ps auxff | pgrep nginx
-
-# Check if nginx is listening on port 8080
-nc -z 0 8080
