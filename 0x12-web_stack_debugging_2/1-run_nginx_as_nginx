@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
-# configures the container to make nginx run as the nginx user & listen on all active IPs on port 8080
+# configures Nginx to run as the nginx user
 
-# Update the nginx user in the nginx configuration file
-sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
+# Create a system user named 'nginx' without a home directory, with /bin/false as the login shell, and disable interactive login.
+sudo adduser --system --no-create-home --shell /bin/false --group --disabled-login nginx
 
-# Update the nginx configuration file to listen on port 8080
-sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-available/default
+# Terminate any running processes with the name 'apache2'.
+pkill -f apache2
 
-# Restart nginx
-service nginx restart
+# Set the file permission of /etc/nginx/nginx.conf to 644 making it readable and writable by the owner (root) and readable by others.
+chmod 644 /etc/nginx/nginx.conf
+
+# Add 'user nginx;' at the beginning of the /etc/nginx/nginx.conf file.
+sed -i "1i user nginx;" /etc/nginx/nginx.conf
+
+# Replace '80' with '8080' in the /etc/nginx/sites-enabled/default file.
+sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+
+# Restart the Nginx service as the 'nginx' user.
+sudo -u nginx service nginx restart
