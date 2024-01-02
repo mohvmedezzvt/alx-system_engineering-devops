@@ -6,11 +6,8 @@ Welcome to my ALX System Engineering & DevOps repository! This repository contai
 
 - [Projects](#projects)
 - [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
 - [How to Contribute](#how-to-contribute)
-- [Acknowledgments](#acknowledgments)
-- [Contact](#contact)
-- [License](#license)
+- [Acknowledgments & Contact Information](#acknowledgments-&-contact-information)
 
 ## Projects
 
@@ -83,6 +80,7 @@ Welcome to my ALX System Engineering & DevOps repository! This repository contai
 24. [Command line for the win](./command_line_for_the_win)
    - Challenges and exercises to enhance command line skills.
 
+
 ## Getting Started
 
 To explore the projects and exercises in this repository, follow these steps:
@@ -98,6 +96,7 @@ To explore the projects and exercises in this repository, follow these steps:
    cd alx-system_engineering-devops/0x00-shell_basics
 
 3. Enjoy.
+
 
 ## How to Contribute
 
@@ -120,11 +119,10 @@ If you'd like to contribute to this repository or report issues, please follow t
 
 4. Open a pull request on the main repository.
 
-## Acknowledgments
+
+## Acknowledgments & Contact Information
 
 I would like to express my gratitude to the ALX System Engineering & DevOps program and the community for their support and guidance throughout the learning process.
-
-## Contact Information
 
 Feel free to get in touch for any inquiries, collaboration opportunities, or discussions.
 
