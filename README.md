@@ -1,6 +1,6 @@
 # ALX System Engineering & DevOps
 
-Welcome to my ALX System Engineering & DevOps repository! This repository contains my projects, exercises, and code submissions for the ALX System Engineering & DevOps program. The program covers a wide range of topics, including shell scripting, system administration, networking, and more.
+Welcome to my ALX System Engineering & DevOps repository! This repository contains my projects, exercises, and code submissions for the ALX Software Engineering program. The program covers a wide range of System Engineering & DevOps topics, including shell scripting, system administration, networking, and more.
 
 ## Table of Contents
 
