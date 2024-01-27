@@ -1,0 +1,29 @@
+server {
+    # Listen for HTTP requests
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    # Set the root directory for serving static files
+    root /var/www/html;
+
+    # Define the default index files to serve
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name 54.210.173.123;
+
+    # Location block for handling requests to the root directory
+    location / {
+        # fall back to a 404 error if not found
+        try_files $uri $uri/ =404;
+    }
+
+    location = /airbnb-onepage/ {
+        # to preserve the original client IP address
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # Proxy requests to the backend server listening on localhost port 5000
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+
+    # Redirect requests to the specified URL with a 301 Moved Permanently status
+    rewrite ^/redirect_me https://github.com/mohvmedezzvt/ permanent;
+}
